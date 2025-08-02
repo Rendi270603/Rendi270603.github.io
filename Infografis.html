@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografis Konversi Limbah Plastik ke Hidrogen</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(15, 118, 110, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #0f766e, #0ea5e9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .infographic {
+            background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 3rem 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .infographic::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230f766e' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .section-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f766e;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #0d9488, #0ea5e9);
+            border-radius: 4px;
+        }
+
+        /* Process Flow Styles */
+        .process-flow {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, auto);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .process-step {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+            z-index: 10;
+        }
+
+        .process-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #0d9488, #0ea5e9);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.1));
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #0f766e;
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: #64748b;
+            text-align: center;
+        }
+
+        .process-arrows {
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 20px;
+            z-index: 5;
+        }
+
+        .arrow-right {
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 20px solid #0ea5e9;
+            position: absolute;
+            right: 0;
+            filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.2));
+        }
+
+        .arrow-line {
+            width: 20px;
+            height: 4px;
+            background: #0ea5e9;
+            position: absolute;
+            left: 0;
+            top: 8px;
+        }
+
+        /* Challenges Section */
+        .challenges-section {
+            margin-bottom: 4rem;
+        }
+
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .challenge-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .challenge-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .challenge-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #f43f5e, #fb7185);
+        }
+
+        .challenge-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem;
+            filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.1));
+        }
+
+        .challenge-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #0f766e;
+            margin-bottom: 1rem;
+        }
+
+        .challenge-desc {
+            font-size: 1rem;
+            color: #64748b;
+        }
+
+        /* Triple Helix Section */
+        .solution-section {
+            margin-bottom: 3rem;
+        }
+
+        .triple-helix {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .helix-node {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 2;
+        }
+
+        .helix-node:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            z-index: 10;
+        }
+
+        .helix-university::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #f59e0b, #fbbf24);
+        }
+
+        .helix-government::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #0ea5e9, #38bdf8);
+        }
+
+        .helix-industry::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #10b981, #34d399);
+        }
+
+        .helix-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem;
+            filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.1));
+        }
+
+        .helix-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #0f766e;
+            margin-bottom: 1rem;
+        }
+
+        .helix-desc {
+            font-size: 1rem;
+            color: #64748b;
+        }
+
+        .helix-center {
+            grid-column: 1 / -1;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            margin-top: 2rem;
+        }
+
+        .helix-center::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #0f766e, #0ea5e9);
+        }
+
+        .helix-center-title {
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, #0f766e, #0ea5e9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .helix-center-desc {
+            font-size: 1rem;
+            color: #64748b;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 1rem;
+            color: #64748b;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, rgba(15, 118, 110, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%);
+            border-radius: 1rem;
+        }
+
+        @media (max-width: 1024px) {
+            .process-flow {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .process-flow {
+                grid-template-columns: 1fr;
+            }
+
+            .challenges-grid,
+            .triple-helix {
+                grid-template-columns: 1fr;
+            }
+
+            .process-arrows {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Konversi Limbah Plastik Menjadi Bahan Bakar Hidrogen</h1>
+            <p>Menggunakan Microwave-Assisted Pyrolysis (MAP) dengan Integrasi IoT dan Katalis Ramah Lingkungan</p>
+        </div>
+
+        <div class="infographic">
+            <div class="section-content">
+                <h2 class="section-title">Proses Konversi Limbah Plastik ke Hidrogen</h2>
+
+                <div class="process-flow">
+                    <!-- Step 1: Collection & Sorting -->
+                    <div class="process-step">
+                        <div class="process-card">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 40L50 20L80 40L50 60L20 40Z" fill="url(#paint1_linear)" />
+                                    <path d="M30 40V60H70V40" stroke="#0d9488" stroke-width="3" />
+                                    <circle cx="40" cy="50" r="5" fill="#fff" />
+                                    <circle cx="50" cy="50" r="5" fill="#fff" />
+                                    <circle cx="60" cy="50" r="5" fill="#fff" />
+                                    <defs>
+                                        <linearGradient id="paint1_linear" x1="20" y1="20" x2="80" y2="60"
+                                            gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#0d9488" />
+                                            <stop offset="1" stop-color="#0ea5e9" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h3 class="card-title">1. Pengumpulan & Pemilahan</h3>
+                            <p class="card-desc">Limbah plastik pascakonsumsi dikumpulkan dan dipilah berdasarkan
+                                jenisnya untuk memastikan kualitas bahan baku.</p>
+                        </div>
+                        <div class="process-arrows">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-right"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Shredding -->
+                    <div class="process-step">
+                        <div class="process-card">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="25" y="20" width="50" height="60" rx="5" fill="url(#paint2_linear)" />
+                                    <path d="M35 30L65 30" stroke="#fff" stroke-width="3" />
+                                    <path d="M35 40L65 40" stroke="#fff" stroke-width="3" />
+                                    <path d="M35 50L65 50" stroke="#fff" stroke-width="3" />
+                                    <path d="M35 60L65 60" stroke="#fff" stroke-width="3" />
+                                    <path d="M35 70L65 70" stroke="#fff" stroke-width="3" />
+                                    <path d="M25 80L35 90H65L75 80" stroke="#0d9488" stroke-width="3" />
+                                    <rect x="35" y="80" width="30" height="10" fill="#0d9488" />
+                                    <defs>
+                                        <linearGradient id="paint2_linear" x1="25" y1="20" x2="75" y2="80"
+                                            gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#0ea5e9" />
+                                            <stop offset="1" stop-color="#38bdf8" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h3 class="card-title">2. Penghancuran Plastik</h3>
+                            <p class="card-desc">Plastik dihancurkan menjadi serpihan kecil untuk meningkatkan efisiensi
+                                proses pirolisis dan memudahkan pengumpanan.</p>
+                        </div>
+                        <div class="process-arrows">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-right"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Hopper System -->
+                    <div class="process-step">
+                        <div class="process-card">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M30 30L50 10L70 30L70 70L30 70L30 30Z" fill="url(#paint3_linear)" />
+                                    <path d="M40 70L40 90L60 90L60 70" stroke="#0d9488" stroke-width="3" />
+                                    <rect x="40" y="70" width="20" height="20" fill="#0d9488" />
+                                    <path d="M45 40L55 50M45 50L55 40" stroke="#fff" stroke-width="2" />
+                                    <path d="M45 55L55 65M45 65L55 55" stroke="#fff" stroke-width="2" />
+                                    <defs>
+                                        <linearGradient id="paint3_linear" x1="30" y1="10" x2="70" y2="70"
+                                            gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#0ea5e9" />
+                                            <stop offset="1" stop-color="#38bdf8" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h3 class="card-title">3. Sistem Hopper</h3>
+                            <p class="card-desc">Sistem pengumpanan otomatis yang mengatur aliran serpihan plastik ke
+                                dalam reaktor pirolisis secara terkontrol.</p>
+                        </div>
+                        <div class="process-arrows">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-right"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Pyrolysis Reactor -->
+                    <div class="process-step">
+                        <div class="process-card">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="20" y="30" width="60" height="40" rx="20" fill="url(#paint4_linear)" />
+                                    <rect x="25" y="35" width="50" height="30" rx="15" fill="#60a5fa" />
+                                    <path d="M30 40C30 40 40 55 50 55C60 55 70 40 70 40" stroke="#fff"
+                                        stroke-width="2" />
+                                    <circle cx="30" cy="40" r="3" fill="#ef4444" />
+                                    <circle cx="70" cy="40" r="3" fill="#ef4444" />
+                                    <path d="M45 25C45 25 40 15 50 15C60 15 55 25 55 25" stroke="#0d9488"
+                                        stroke-width="2" />
+                                    <rect x="45" y="20" width="10" height="10" fill="#0d9488" />
+                                    <path d="M45 75C45 75 40 85 50 85C60 85 55 75 55 75" stroke="#0d9488"
+                                        stroke-width="2" />
+                                    <rect x="45" y="70" width="10" height="10" fill="#0d9488" />
+                                    <defs>
+                                        <linearGradient id="paint4_linear" x1="20" y1="30" x2="80" y2="70"
+                                            gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#0ea5e9" />
+                                            <stop offset="1" stop-color="#38bdf8" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h3 class="card-title">4. Reaktor Pirolisis</h3>
+                            <p class="card-desc">Proses microwave-assisted pyrolysis menggunakan katalis ramah
+                                lingkungan dari limbah lokal seperti cangkang telur dan ampas sagu.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Sensors System -->
+                    <div class="process-step">
+                        <div class="process-card">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="25" y="25" width="50" height="50" rx="5" fill="url(#paint5_linear)" />
+                                    <circle cx="35" cy="35" r="5" fill="#ef4444" />
+                                    <text x="35" y="37" text-anchor="middle" font-size="8" fill="white">T</text>
+                                    <circle cx="65" cy="35" r="5" fill="#fbbf24" />
+                                    <text x="65" y="37" text-anchor="middle" font-size="8" fill="white">P</text>
+                                    <circle cx="35" cy="65" r="5" fill="#10b981" />
+                                    <text x="35" y="67" text-anchor="middle" font-size="8" fill="white">G</text>
+                                    <circle cx="65" cy="65" r="5" fill="#8b5cf6" />
+                                    <text x="65" y="67" text-anchor="middle" font-size="8" fill="white">F</text>
+                                    <rect x="45" y="45" width="10" height="10" fill="#f472b6" />
+                                    <text x="50" y="52" text-anchor="middle" font-size="8" fill="white">IoT</text>
+                                    <defs>
+                                        <linearGradient id="paint5_linear" x1="25" y1="25" x2="75" y2="75"
+                                            gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#0ea5e9" />
+                                            <stop offset="1" stop-color="#38bdf8" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h3 class="card-title">5. Sistem Sensor</h3>
+                            <p class="card-desc">Termokopel K + MAX6675, sensor tekanan MPX5700AP, sensor gas MQ-8, dan
+                                sensor aliran FS6122 memastikan proses berjalan optimal.</p>
+                        </div>
+                        <div class="process-arrows">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-right"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 6: IoT Controller -->
+                    <div class="process-step">
+                        <div class="process-card">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="20" y="30" width="60" height="40" rx="5" fill="url(#paint6_linear)" />
+                                    <rect x="25" y="35" width="50" height="30" rx="2" fill="#60a5fa" />
+                                    <circle cx="35" cy="45" r="3" fill="#ef4444" />
+                                    <circle cx="45" cy="45" r="3" fill="#fbbf24" />
+                                    <circle cx="55" cy="45" r="3" fill="#10b981" />
+                                    <circle cx="65" cy="45" r="3" fill="#8b5cf6" />
+                                    <rect x="30" y="55" width="40" height="5" rx="2" fill="#fff" />
+                                    <text x="50" y="25" text-anchor="middle" font-size="8" fill="#0ea5e9">ESP32</text>
+                                    <defs>
+                                        <linearGradient id="paint6_linear" x1="20" y1="30" x2="80" y2="70"
+                                            gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#0ea5e9" />
+                                            <stop offset="1" stop-color="#38bdf8" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h3 class="card-title">6. Mikrokontroler ESP32</h3>
+                            <p class="card-desc">Pengendali sistem dan IoT yang mengintegrasikan semua sensor dan
+                                mengirimkan data ke dashboard pemantauan secara real-time.</p>
+                        </div>
+                        <div class="process-arrows">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-right"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 7: Dashboard Monitoring -->
+                    <div class="process-step">
+                        <div class="process-card">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="20" y="20" width="60" height="40" rx="5" fill="url(#paint7_linear)" />
+                                    <rect x="25" y="25" width="50" height="30" rx="2" fill="#60a5fa" />
+                                    <path d="M30 35L40 45L50 30L60 40L70 35" stroke="#fff" stroke-width="2" />
+                                    <circle cx="40" cy="45" r="2" fill="#ef4444" />
+                                    <circle cx="50" cy="30" r="2" fill="#10b981" />
+                                    <circle cx="60" cy="40" r="2" fill="#fbbf24" />
+                                    <rect x="30" y="65" width="10" height="20" rx="2" fill="#0ea5e9" />
+                                    <rect x="45" y="65" width="10" height="20" rx="2" fill="#0ea5e9" />
+                                    <rect x="60" y="65" width="10" height="20" rx="2" fill="#0ea5e9" />
+                                    <defs>
+                                        <linearGradient id="paint7_linear" x1="20" y1="20" x2="80" y2="60"
+                                            gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#0ea5e9" />
+                                            <stop offset="1" stop-color="#38bdf8" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h3 class="card-title">7. Dashboard IoT</h3>
+                            <p class="card-desc">Antarmuka pemantauan yang menampilkan data suhu, tekanan, komposisi
+                                gas, dan parameter lain secara real-time untuk pengawasan proses.</p>
+                        </div>
+                        <div class="process-arrows">
+                            <div class="arrow-line"></div>
+                            <div class="arrow-right"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 8: Hydrogen Storage -->
+                    <div class="process-step">
+                        <div class="process-card">
+                            <div class="card-icon">
+                                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="50" cy="50" r="30" fill="url(#paint8_linear)" />
+                                    <circle cx="50" cy="50" r="25" fill="#10b981" />
+                                    <text x="50" y="45" text-anchor="middle" font-size="14" fill="white"
+                                        font-weight="bold">H₂</text>
+                                    <text x="50" y="60" text-anchor="middle" font-size="8" fill="white">Hidrogen</text>
+                                    <path d="M20 50C20 50 15 40 25 30C35 20 65 20 75 30C85 40 80 50 80 50"
+                                        stroke="#0d9488" stroke-width="2" />
+                                    <defs>
+                                        <linearGradient id="paint8_linear" x1="20" y1="20" x2="80" y2="80"
+                                            gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#0d9488" />
+                                            <stop offset="1" stop-color="#10b981" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h3 class="card-title">8. Penyimpanan Hidrogen</h3>
+                            <p class="card-desc">Hasil akhir berupa hidrogen yang dapat digunakan sebagai bahan bakar
+                                bersih dan ramah lingkungan untuk berbagai aplikasi.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="section-title">Tantangan Implementasi</h2>
+
+                <div class="challenges-grid">
+                    <div class="challenge-card">
+                        <div class="challenge-icon">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="30" y="40" width="40" height="50" rx="5" fill="url(#paint9_linear)" />
+                                <circle cx="50" cy="65" r="8" fill="#fff" />
+                                <path d="M50 65V70" stroke="#f43f5e" stroke-width="3" />
+                                <path d="M30 40V30C30 20 40 10 50 10C60 10 70 20 70 30V40" stroke="#f43f5e"
+                                    stroke-width="3" />
+                                <circle cx="50" cy="30" r="5" fill="#f43f5e" />
+                                <defs>
+                                    <linearGradient id="paint9_linear" x1="30" y1="40" x2="70" y2="90"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#f43f5e" />
+                                        <stop offset="1" stop-color="#fb7185" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <h3 class="challenge-title">Keterbatasan Akses Teknologi</h3>
+                        <p class="challenge-desc">Sulitnya mendapatkan peralatan microwave dan komponen IoT di daerah
+                            terpencil menjadi kendala utama dalam implementasi sistem.</p>
+                    </div>
+
+                    <div class="challenge-card">
+                        <div class="challenge-icon">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="30" r="15" fill="url(#paint10_linear)" />
+                                <circle cx="50" cy="25" r="5" fill="#fff" />
+                                <rect x="35" y="45" width="30" height="40" rx="15" fill="url(#paint11_linear)" />
+                                <path d="M30 60C30 60 20 70 30 80" stroke="#f43f5e" stroke-width="2" />
+                                <path d="M70 60C70 60 80 70 70 80" stroke="#f43f5e" stroke-width="2" />
+                                <path d="M40 30L30 20M60 30L70 20" stroke="#f43f5e" stroke-width="2" />
+                                <text x="50" y="65" text-anchor="middle" font-size="20" fill="white">?</text>
+                                <defs>
+                                    <linearGradient id="paint10_linear" x1="35" y1="15" x2="65" y2="45"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#f43f5e" />
+                                        <stop offset="1" stop-color="#fb7185" />
+                                    </linearGradient>
+                                    <linearGradient id="paint11_linear" x1="35" y1="45" x2="65" y2="85"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#f43f5e" />
+                                        <stop offset="1" stop-color="#fb7185" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <h3 class="challenge-title">Rendahnya Pemahaman Teknis</h3>
+                        <p class="challenge-desc">Kurangnya SDM yang memahami teknologi IoT dan proses pirolisis
+                            memerlukan program pelatihan khusus dan pendampingan teknis.</p>
+                    </div>
+
+                    <div class="challenge-card">
+                        <div class="challenge-icon">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="25" y="20" width="50" height="60" rx="5" fill="url(#paint12_linear)" />
+                                <rect x="30" y="25" width="40" height="50" rx="2" fill="#fff" />
+                                <path d="M35 35H65M35 45H65M35 55H65M35 65H50" stroke="#f43f5e" stroke-width="2" />
+                                <circle cx="70" cy="70" r="15" fill="#fff" />
+                                <text x="70" y="75" text-anchor="middle" font-size="20" fill="#f43f5e">?</text>
+                                <defs>
+                                    <linearGradient id="paint12_linear" x1="25" y1="20" x2="75" y2="80"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#f43f5e" />
+                                        <stop offset="1" stop-color="#fb7185" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <h3 class="challenge-title">Minimnya Dukungan Regulasi</h3>
+                        <p class="challenge-desc">Belum adanya kebijakan daerah yang mendukung teknologi
+                            limbah-ke-energi memerlukan advokasi dan kolaborasi dengan pemerintah setempat.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem;"></div>
+                <h2 class="section-title">Solusi Kolaborasi Triple Helix</h2>
+
+                <div class="triple-helix">
+                    <div class="helix-node helix-university">
+                        <div class="helix-icon">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 40L50 20L90 40L50 60L10 40Z" fill="url(#paint13_linear)" />
+                                <rect x="30" y="45" width="40" height="30" fill="url(#paint14_linear)" />
+                                <path d="M25 45V75H75V45" stroke="#f59e0b" stroke-width="2" />
+                                <rect x="45" y="55" width="10" height="20" fill="#fff" />
+                                <path d="M20 75H80" stroke="#f59e0b" stroke-width="3" />
+                                <circle cx="50" cy="35" r="5" fill="#fff" />
+                                <path d="M50 35L55 30M50 35L45 30" stroke="#fff" stroke-width="1" />
+                                <defs>
+                                    <linearGradient id="paint13_linear" x1="10" y1="20" x2="90" y2="60"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#f59e0b" />
+                                        <stop offset="1" stop-color="#fbbf24" />
+                                    </linearGradient>
+                                    <linearGradient id="paint14_linear" x1="30" y1="45" x2="70" y2="75"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#f59e0b" />
+                                        <stop offset="1" stop-color="#fbbf24" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <h3 class="helix-title">Perguruan Tinggi</h3>
+                        <p class="helix-desc">Pusat inovasi teknologi, penelitian katalis ramah lingkungan, dan
+                            pelatihan SDM untuk pengoperasian sistem.</p>
+                    </div>
+
+                    <div class="helix-node helix-government">
+                        <div class="helix-icon">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 30L50 10L80 30H20Z" fill="url(#paint15_linear)" />
+                                <rect x="25" y="30" width="50" height="50" fill="url(#paint16_linear)" />
+                                <rect x="35" y="40" width="10" height="20" fill="#fff" />
+                                <rect x="55" y="40" width="10" height="20" fill="#fff" />
+                                <rect x="20" y="80" width="60" height="10" fill="url(#paint17_linear)" />
+                                <rect x="45" y="60" width="10" height="20" fill="#fff" />
+                                <path d="M40 20L40 5L60 5L60 20" stroke="#0ea5e9" stroke-width="2" />
+                                <rect x="40" y="5" width="20" height="10" fill="#fff" />
+                                <defs>
+                                    <linearGradient id="paint15_linear" x1="20" y1="10" x2="80" y2="30"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#0ea5e9" />
+                                        <stop offset="1" stop-color="#38bdf8" />
+                                    </linearGradient>
+                                    <linearGradient id="paint16_linear" x1="25" y1="30" x2="75" y2="80"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#0ea5e9" />
+                                        <stop offset="1" stop-color="#38bdf8" />
+                                    </linearGradient>
+                                    <linearGradient id="paint17_linear" x1="20" y1="80" x2="80" y2="90"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#0ea5e9" />
+                                        <stop offset="1" stop-color="#38bdf8" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <h3 class="helix-title">Pemerintah Daerah</h3>
+                        <p class="helix-desc">Penyedia regulasi pendukung, insentif untuk adopsi teknologi, dan
+                            fasilitasi kerjasama antar pemangku kepentingan.</p>
+                    </div>
+
+                    <div class="helix-node helix-industry">
+                        <div class="helix-icon">
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="20" y="50" width="20" height="30" fill="url(#paint18_linear)" />
+                                <rect x="40" y="40" width="20" height="40" fill="url(#paint19_linear)" />
+                                <rect x="60" y="30" width="20" height="50" fill="url(#paint20_linear)" />
+                                <path d="M25 40C25 40 30 20 50 20C70 20 75 40 75 40" stroke="#10b981"
+                                    stroke-width="2" />
+                                <circle cx="30" cy="65" r="5" fill="#fff" />
+                                <circle cx="50" cy="55" r="5" fill="#fff" />
+                                <circle cx="70" cy="45" r="5" fill="#fff" />
+                                <defs>
+                                    <linearGradient id="paint18_linear" x1="20" y1="50" x2="40" y2="80"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#10b981" />
+                                        <stop offset="1" stop-color="#34d399" />
+                                    </linearGradient>
+                                    <linearGradient id="paint19_linear" x1="40" y1="40" x2="60" y2="80"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#10b981" />
+                                        <stop offset="1" stop-color="#34d399" />
+                                    </linearGradient>
+                                    <linearGradient id="paint20_linear" x1="60" y1="30" x2="80" y2="80"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#10b981" />
+                                        <stop offset="1" stop-color="#34d399" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <h3 class="helix-title">Industri/UMKM</h3>
+                        <p class="helix-desc">Pelaksana hilirisasi teknologi, pengembangan aplikasi komersial, dan
+                            penyerapan tenaga kerja lokal terlatih.</p>
+                    </div>
+
+                    <div class="helix-center">
+                        <h3 class="helix-center-title">Sinergi Triple Helix</h3>
+                        <p class="helix-center-desc">Kolaborasi antara Perguruan Tinggi, Pemerintah, dan Industri
+                            menciptakan ekosistem inovasi yang berkelanjutan untuk mengembangkan dan mengimplementasikan
+                            teknologi konversi limbah plastik menjadi hidrogen.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add hover effects for process steps
+        document.querySelectorAll('.process-step').forEach(step => {
+            step.addEventListener('mouseenter', () => {
+                step.style.transform = 'translateY(-10px)';
+                step.style.zIndex = '10';
+            });
+
+            step.addEventListener('mouseleave', () => {
+                step.style.transform = '';
+                step.style.zIndex = '2';
+            });
+        });
+
+        // Add hover effects for helix nodes
+        document.querySelectorAll('.helix-node').forEach(node => {
+            node.addEventListener('mouseenter', () => {
+                node.style.transform = 'translateY(-10px)';
+                node.style.zIndex = '10';
+            });
+
+            node.addEventListener('mouseleave', () => {
+                node.style.transform = '';
+                node.style.zIndex = '2';
+            });
+        });
+    </script>
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'968ee4c9a03ea8f7',t:'MTc1NDE1MTUzMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+</body>
+
+</html>
